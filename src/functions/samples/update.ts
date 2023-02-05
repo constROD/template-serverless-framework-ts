@@ -49,16 +49,9 @@ export const updateSample = middy(async (event: APIGatewayProxyEventV2) => {
 
   const { id, ...request } = custom.request;
 
-  try {
-    const records = await sampleService.update(id, request);
+  const records = await sampleService.update(id, request);
 
-    return createAPIResponse({ type: APIResponseTypes.Updated, response: { records } });
-  } catch (err) {
-    return createAPIResponse({
-      type: APIResponseTypes.BadRequest,
-      response: { error: err },
-    });
-  }
+  return createAPIResponse({ type: APIResponseTypes.Updated, response: { records } });
 }).use(
   validationMiddleware({
     type: ['path', 'body'],

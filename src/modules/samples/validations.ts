@@ -5,14 +5,14 @@ export const getSampleSchema = z.object({
 });
 
 export const createSampleSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
+  name: z.string().trim(),
+  description: z.string().trim().optional(),
 });
 
 export const updateSampleSchema = z.object({
   id: z.string().uuid(),
-  name: z.string().optional(),
-  description: z.string().optional(),
+  name: z.string().trim().optional(),
+  description: z.string().trim().optional(),
 });
 
 export const deleteSampleSchema = z.object({

@@ -25,21 +25,13 @@ export class PGService<Schema = unknown, Create = unknown, Update = unknown> {
     this.ref = connection.ref;
   }
 
-  get = async <S = Schema>(id: string, columns?: string[]): Promise<S[]> => {
-    const columnsQuery = columns ? (columns.length ? columns : '*') : '*';
-    const records = (await this.connection
-      .select(columnsQuery)
-      .from(this.tableName)
-      .where('id', id)) as S[];
+  get = async <S = Schema>(id: string): Promise<S[]> => {
+    const records = (await this.connection.select('*').from(this.tableName).where('id', id)) as S[];
     return records;
   };
 
-  list = async <S = Schema>(
-    columns?: string[]
-  ): Promise<{ records: S[]; totalRecords: number }> => {
-    const columnsQuery = columns ? (columns.length ? columns : '*') : '*';
-    const records = (await this.connection.select(columnsQuery).from(this.tableName)) as S[];
-
+  list = async <S = Schema>(): Promise<{ records: S[]; totalRecords: number }> => {
+    const records = (await this.connection.select('*').from(this.tableName)) as S[];
     const [total] = (await this.connection(this.tableName).count('id', {
       as: 'totalRecords',
     })) as { totalRecords: number }[];
@@ -64,9 +56,7 @@ export class PGService<Schema = unknown, Create = unknown, Update = unknown> {
 
   archive = async <S = Schema>(ids: string[]): Promise<S[]> => {
     const records = (await this.connection(this.tableName)
-      .update({
-        deletedAt: 'NOW()',
-      })
+      .update({ deletedAt: 'NOW()' })
       .whereIn('id', ids)
       .returning('*')) as S[];
     return records;

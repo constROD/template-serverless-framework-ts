@@ -10,15 +10,26 @@ const commonHeaders = {
 export const createAPIResponse = <R>({
   type,
   response,
+  isRaw = false,
 }: {
   type: APIResponseTypes;
-  response?: Partial<APIResponse<R>>;
-}) => ({
-  statusCode: API_RESPONSES[type].statusCode,
-  headers: commonHeaders,
-  body: JSON.stringify({
-    message: API_RESPONSES[type].message,
-    code: API_RESPONSES[type].code,
-    ...response,
-  }),
-});
+  response?: R;
+  isRaw?: boolean;
+}) => {
+  if (isRaw)
+    return {
+      statusCode: API_RESPONSES[type].statusCode,
+      headers: commonHeaders,
+      body: (response ? JSON.stringify({ ...response }) : {}) as R,
+    };
+
+  return {
+    statusCode: API_RESPONSES[type].statusCode,
+    headers: commonHeaders,
+    body: JSON.stringify({
+      message: API_RESPONSES[type].message,
+      code: API_RESPONSES[type].code,
+      ...response,
+    }) as Partial<APIResponse<R>>,
+  };
+};

@@ -2,12 +2,17 @@ import { custom } from 'serverless/custom';
 import { environment } from 'serverless/environment';
 import { functions } from 'serverless/functions';
 import { resources } from 'serverless/resources';
-import { DeploymentBucketName, LambdaTimeout, Serverless } from 'shared/constants/config';
+import {
+  DeploymentBucketName,
+  LambdaTimeout,
+  Serverless,
+  ServiceName,
+} from 'shared/constants/config';
 
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
-  service: 'service-name',
+  service: ServiceName,
   frameworkVersion: '3',
   provider: {
     name: 'aws',

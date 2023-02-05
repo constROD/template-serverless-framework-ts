@@ -1,6 +1,10 @@
 import { Env } from './config';
 
-export enum Entities {
+export enum Databases {
+  Sample = 'sample',
+}
+
+export enum SampleEntities {
   Sample = 'sample',
 }
 

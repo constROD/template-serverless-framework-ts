@@ -34,20 +34,20 @@ export const createHandler = (
             type: APIResponseTypes.ServerError,
             response: { error },
           });
+
         return response;
       },
     });
 
-  if (parseBodyToJson) {
-    middyfiedHandler = middyfiedHandler.use(jsonBodyParser());
-  }
+  if (parseBodyToJson) middyfiedHandler = middyfiedHandler.use(jsonBodyParser());
 
   return middyfiedHandler;
 };
 
 export const createRoutes = (routes: Route[]) => createHandler(httpRouterHandler(routes));
 
-export const createHandlerConfig = (fnName: string) => `src/functions/${fnName}/handler.run`;
+export const createHandlerConfig = (fnName: string, handlerName?: string) =>
+  `src/functions/${fnName}/${handlerName || 'handler'}.run`;
 
-export const createRoutesConfig = (routes: { method: string; path: string }[]) =>
+export const createRoutesConfig = (routes: Omit<Route, 'handler'>[]) =>
   routes.map(({ method, path }) => ({ httpApi: { method, path } }));

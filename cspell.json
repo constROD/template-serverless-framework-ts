@@ -11,7 +11,9 @@
     "esbuild",
     "oracledb",
     "middyfied",
-    "npmrc"
+    "npmrc",
+    "constrod",
+    "npmjs"
   ],
   "ignorePaths": [
     "node_modules/",

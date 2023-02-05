@@ -6,7 +6,6 @@ pg.types.setTypeParser(pg.types.builtins.INT8, (value: string) => Number(value))
 pg.types.setTypeParser(pg.types.builtins.FLOAT8, (value: string) => Number(value));
 pg.types.setTypeParser(pg.types.builtins.NUMERIC, (value: string) => Number(value));
 
-const client = 'pg';
 const commonConnectionProperties: Partial<Knex.PgConnectionConfig> = {
   host: DB_HOST,
   port: DB_PORT,
@@ -18,7 +17,7 @@ const pool: Knex.Config['pool'] = { min: 1, max: 1 };
 
 export const getKnexConnection = (database: string) =>
   knex({
-    client,
+    client: 'pg',
     connection: {
       ...commonConnectionProperties,
       database,

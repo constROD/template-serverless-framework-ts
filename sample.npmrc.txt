@@ -1,3 +1,3 @@
-@nyfulcrum:registry=https://registry.npmjs.org
+@constrod:registry=https://registry.npmjs.org
 //registry.npmjs.org/:_authToken=
 always-auth=true

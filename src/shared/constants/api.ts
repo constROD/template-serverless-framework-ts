@@ -44,6 +44,10 @@ export enum APIResponseTypes {
   Forbidden = 'forbidden',
 }
 
+export enum XHeaders {
+  AccessToken = 'x-access-token',
+}
+
 export const API_RESPONSES = {
   serverError: {
     message: 'Server Error',

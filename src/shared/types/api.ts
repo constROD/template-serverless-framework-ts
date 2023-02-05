@@ -10,8 +10,6 @@ export interface Route {
 
 export interface Pagination {
   current: number;
-  next: number;
-  prev: number;
   pageSize: number;
 }
 

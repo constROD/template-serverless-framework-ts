@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 import middy from '@middy/core';
 import { APIGatewayProxyEventV2 } from 'aws-lambda';
-import { APIResponseTypes } from 'shared/constants/api';
+import { APIResponseTypes, XHeaders } from 'shared/constants/api';
 import { createAPIResponse } from 'shared/helpers/api';
 import { APIRequest } from 'shared/types/api';
 import { z } from 'zod';
@@ -50,14 +50,9 @@ export const validationMiddleware = ({
 
 export const authorizeMiddleware = ({ permission }: { permission: string }) => {
   const before: middy.MiddlewareFn<APIGatewayProxyEventV2> = ({ event }) => {
-    const accessToken = event.headers['x-access-token'];
+    const accessToken = event.headers[XHeaders.AccessToken];
 
-    if (!accessToken) {
-      return createAPIResponse({
-        type: APIResponseTypes.Unauthorized,
-        response: { message: 'Unauthorized' },
-      });
-    }
+    if (!accessToken) return createAPIResponse({ type: APIResponseTypes.Unauthorized });
 
     // TODO: Implement the authorization logic (Call to User Service)
     // eslint-disable-next-line no-console

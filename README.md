@@ -21,10 +21,11 @@ $ chmod ug+x .git/hooks/*
 $ nvm use or nvm use 16.13.0
 ```
 
-- Create `.env` file and refer to `.env-sample.txt` file for the required secrets.
-- Create `.aws-config` file and refer to `..aws-config-sample.txt` file for the required secrets.
-- Create `.aws-credentials` file and refer to `.aws-credentials-sample.txt` file for the required secrets.
-- Create `.npmrc` and ask the team for secrets.
+- Create `.env` file.
+- Create `.aws-config` file.
+- Create `.aws-credentials` file.
+- Create `.npmrc` and file.
+- And refer to the `sample.<secret-file>` for the required variables.
 
 ## Without Docker
 

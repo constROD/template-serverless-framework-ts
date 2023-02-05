@@ -15,10 +15,7 @@ build
 .aws-credentials
 .aws-config
 
-.env-sample.txt
-.npmrc-sample.txt
-.aws-config-sample.txt
-.aws-credentials-sample.txt
+sample.*.txt
 
 *-lock.json
 *-lock.yaml
