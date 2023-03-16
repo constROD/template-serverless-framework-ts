@@ -1,6 +1,5 @@
-import { createSampleSchema, updateSampleSchema } from './validations';
-
-import { z } from 'zod';
+import { type z } from 'zod';
+import { type createSampleSchema, type updateSampleSchema } from './validations';
 
 export interface Sample {
   id: string;

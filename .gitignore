@@ -1,21 +1,32 @@
 node_modules
-dist
-build
 
-.DS_Store
 .eslintcache
+.pnpm-store
 .serverless
 .esbuild
-.pnpm-store
 
+build
+dist
+
+.DS_Store
 .env
 .env.*
+.env-encoded
 .npmrc
 .aws-credentials
 .aws-config
+*.tsbuildinfo
 
+!**.example
+
+# Remove the lock below if you're using npm
 *-lock.json
+# Remove the lock below if you're using pnpm
+*-lock.yaml
+# Remove the lock below if you're using yarn
 *.lock
 
+logs
+*.log
 *-debug.log*
 *-error.log*

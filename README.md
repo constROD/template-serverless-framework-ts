@@ -11,76 +11,70 @@
 - **(Required for MacOSX):** Run this to give permission husky to run pre-commit hook.
 
 ```bash
-$ chmod ug+x .husky/*
-$ chmod ug+x .git/hooks/*
+chmod ug+x .husky/*
+chmod ug+x .git/hooks/*
 ```
 
 - **(Optional):** Do this if you are using **nvm**.
 
 ```bash
-$ nvm use or nvm use 16.13.0
+nvm use or nvm use 16.13.0
 ```
 
 - Create `.env` file.
-- Create `.aws-config` file.
-- Create `.aws-credentials` file.
-- Create `.npmrc` and file.
-- And refer to the `sample.<secret-file>` for the required variables.
+- and refer to the `<secret-name>.example` for the required variables.
 
 ## Without Docker
 
 - Install dependencies.
 
 ```bash
-$ pnpm i
+pnpm i
 ```
 
-- Run in **development** mode.
+**Development Mode:**
 
 ```bash
-$ pnpm dev
+pnpm dev
+```
+
+**Deploy:**
+
+```bash
+pnpm deploy:<stage> # dev | staging | prod
 ```
 
 ## With Docker
 
+**Development Mode:**
+
 - Build container.
 
 ```bash
-$ docker compose build
+docker compose build # Build with cache
+docker compose build --no-cache # Build with no cache
 ```
 
-```bash
-$ docker compose build --no-cache # Build with no cache
-```
-
-- Run container in **development** mode.
+- Run container.
 
 ```bash
-$ docker compose up
-```
-
-```bash
-$ docker compose up -d # Run in the background.
-```
-
-- Check container's logs.
-
-```bash
-$ docker logs <container-name>
+docker compose up # Run in foreground
+docker compose up -d # Run in background
 ```
 
 - Shutdown container.
 
 ```bash
-$ docker compose down
-```
-
-```bash
-$ docker compose down -v # Remove including the volumes
+docker compose down # Remove without volumes
+docker compose down -v # Remove with volumes
 ```
 
 - If you want to access the container.
 
 ```bash
 $ docker exec -it <container-name> bash
+```
+
+```bash
+docker logs <container_name>
 ```

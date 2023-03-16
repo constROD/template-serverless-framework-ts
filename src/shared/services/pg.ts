@@ -1,22 +1,13 @@
-/* eslint-disable no-nested-ternary */
-import { Knex } from 'knex';
+import { type Knex } from 'knex';
 
-/**
- * TODO: Add pagination
- */
-
-export class PGService<Schema = unknown, Create = unknown, Update = unknown> {
+export class PGService<TSchema extends object> {
   protected connection: Knex;
 
   protected tableName: string;
 
-  protected searchFields: string[];
-
   protected raw: Knex.RawBuilder;
 
   protected ref: Knex.RefBuilder;
-
-  protected transaction: Knex.Transaction;
 
   constructor({ connection, tableName }: { connection: Knex; tableName: string }) {
     this.connection = connection;
@@ -25,48 +16,51 @@ export class PGService<Schema = unknown, Create = unknown, Update = unknown> {
     this.ref = connection.ref;
   }
 
-  get = async <S = Schema>(id: string): Promise<S[]> => {
-    const records = (await this.connection.select('*').from(this.tableName).where('id', id)) as S[];
+  get = async (id: string) => {
+    const records = (await this.connection
+      .select('*')
+      .from(this.tableName)
+      .where('id', id)) as TSchema[];
     return records;
   };
 
-  list = async <S = Schema>(): Promise<{ records: S[]; totalRecords: number }> => {
-    const records = (await this.connection.select('*').from(this.tableName)) as S[];
-    const [total] = (await this.connection(this.tableName).count('id', {
+  list = async () => {
+    const records = (await this.connection.select('*').from(this.tableName)) as TSchema[];
+    const [totalData] = await this.connection(this.tableName).count('id', {
       as: 'totalRecords',
-    })) as { totalRecords: number }[];
-    return { records, totalRecords: total.totalRecords };
+    });
+    return { records, totalRecords: (totalData?.totalRecords as number) || 0 };
   };
 
-  create = async <V = Create, S = Schema>(values: V): Promise<S[]> => {
+  create = async <TCreate extends Record<string, unknown>>(values: TCreate) => {
     const records = (await this.connection
       .insert(values)
       .into(this.tableName)
-      .returning('*')) as S[];
+      .returning('*')) as TSchema[];
     return records;
   };
 
-  update = async <V = Update, S = Schema>(id: string, values: Partial<V>): Promise<S[]> => {
+  update = async <TUpdate extends Record<string, unknown>>(id: string, values: TUpdate) => {
     const records = (await this.connection(this.tableName)
       .update({ ...values, updatedAt: 'NOW()' })
       .where('id', id)
-      .returning('*')) as S[];
+      .returning('*')) as TSchema[];
     return records;
   };
 
-  archive = async <S = Schema>(ids: string[]): Promise<S[]> => {
+  archive = async (ids: string[]) => {
     const records = (await this.connection(this.tableName)
       .update({ deletedAt: 'NOW()' })
       .whereIn('id', ids)
-      .returning('*')) as S[];
+      .returning('*')) as TSchema[];
     return records;
   };
 
-  delete = async <S = Schema>(ids: string[]): Promise<S[]> => {
+  delete = async (ids: string[]) => {
     const records = (await this.connection(this.tableName)
       .del()
       .whereIn('id', ids)
-      .returning('*')) as S[];
+      .returning('*')) as TSchema[];
     return records;
   };
 }

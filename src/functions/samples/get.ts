@@ -1,11 +1,8 @@
 import middy from '@middy/core';
-import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { sampleService } from 'modules/samples/service';
-import { getSampleSchema } from 'modules/samples/validations';
-import { APIResponseTypes } from 'shared/constants/api';
-import { createAPIResponse } from 'shared/helpers/api';
-import { validationMiddleware } from 'shared/middlewares/validation';
-import { APIRequest } from 'shared/types/api';
+import { idSampleSchema } from 'modules/samples/validations';
+import { type APIGatewayEventType } from 'shared/types/http';
+import { makeAPIResponse } from 'shared/utils/http';
 
 /**
  * @openapi
@@ -26,18 +23,13 @@ import { APIRequest } from 'shared/types/api';
  *         description: A single sample.
  */
 
-export const getSample = middy(async (event: APIGatewayProxyEventV2) => {
-  const { custom } = event as APIGatewayProxyEventV2 & {
-    custom: APIRequest<{ id: string }>;
-  };
+export const getSample = middy(async (event: APIGatewayEventType) => {
+  const validated = idSampleSchema.safeParse(event.pathParameters);
 
-  const { id } = custom.request;
-  const records = await sampleService.get(id);
+  if (!validated.success)
+    return makeAPIResponse({ type: 'BadRequest', error: { errors: validated.error } });
 
-  return createAPIResponse({ type: APIResponseTypes.Success, response: { records } });
-}).use(
-  validationMiddleware({
-    type: ['path'],
-    validatorSchema: getSampleSchema,
-  })
-);
+  const records = await sampleService.get(validated.data.id);
+
+  return makeAPIResponse({ type: 'Success', data: { records } });
+});

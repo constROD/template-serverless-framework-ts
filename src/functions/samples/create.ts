@@ -1,20 +1,16 @@
 import middy from '@middy/core';
-import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { sampleService } from 'modules/samples/service';
-import { CreateSample } from 'modules/samples/types';
 import { createSampleSchema } from 'modules/samples/validations';
-import { APIResponseTypes } from 'shared/constants/api';
-import { createAPIResponse } from 'shared/helpers/api';
-import { validationMiddleware } from 'shared/middlewares/validation';
-import { APIRequest } from 'shared/types/api';
+import { type APIGatewayEventType } from 'shared/types/http';
+import { makeAPIResponse } from 'shared/utils/http';
 
 /**
  * @openapi
- * /pipelines:
+ * /samples:
  *   post:
- *     description: Create a pipeline.
+ *     description: Create a sample.
  *     tags:
- *       - Pipelines
+ *       - Samples
  *     requestBody:
  *       required: true
  *       content:
@@ -24,26 +20,22 @@ import { APIRequest } from 'shared/types/api';
  *             properties:
  *               name:
  *                 type: string
- *                 description: Name of the pipeline.
+ *                 description: Name of the sample.
  *               description:
  *                 type: string
- *                 description: Description of the pipeline
+ *                 description: Description of the sample
  *     responses:
  *       201:
- *         description: Pipeline created.
+ *         description: Sample created.
  */
 
-export const createSample = middy(async (event: APIGatewayProxyEventV2) => {
-  const { custom } = event as APIGatewayProxyEventV2 & {
-    custom: APIRequest<CreateSample>;
-  };
+export const createSample = middy(async (event: APIGatewayEventType) => {
+  const validated = createSampleSchema.safeParse(event.body);
 
-  const records = await sampleService.create(custom.request);
+  if (!validated.success)
+    return makeAPIResponse({ type: 'BadRequest', error: { errors: validated.error } });
 
-  return createAPIResponse({ type: APIResponseTypes.Created, response: { records } });
-}).use(
-  validationMiddleware({
-    type: ['body'],
-    validatorSchema: createSampleSchema,
-  })
-);
+  const records = await sampleService.create(validated.data);
+
+  return makeAPIResponse({ type: 'Created', data: { records } });
+});

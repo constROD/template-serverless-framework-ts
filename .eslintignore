@@ -1,25 +1,36 @@
 node_modules
-dist
+
+Dockerfile
+*.config.js
+*.config.ts
+
+.eslintcache
+.pnpm-store
+.serverless
+.esbuild
+
 build
+dist
 
 .DS_Store
-.eslintcache
-.vscode
-
-*.config.ts
-*.config.js
-
 .env
 .env.*
 .npmrc
 .aws-credentials
 .aws-config
+*.tsbuildinfo
 
-sample.*.txt
+!**.example
 
 *-lock.json
 *-lock.yaml
 *.lock
 
+logs
+*.log
 *-debug.log*
 *-error.log*
+
+.dockerignore
+.prettierignore
+.eslintignore

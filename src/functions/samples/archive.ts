@@ -1,17 +1,14 @@
 import middy from '@middy/core';
-import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { sampleService } from 'modules/samples/service';
-import { archiveSampleSchema } from 'modules/samples/validations';
-import { APIResponseTypes } from 'shared/constants/api';
-import { createAPIResponse } from 'shared/helpers/api';
-import { validationMiddleware } from 'shared/middlewares/validation';
-import { APIRequest } from 'shared/types/api';
+import { idSampleSchema } from 'modules/samples/validations';
+import { type APIGatewayEventType } from 'shared/types/http';
+import { makeAPIResponse } from 'shared/utils/http';
 
 /**
  * @openapi
  * /samples/{id}/archive:
  *   delete:
- *     description: Archive a pipeline by {id}.
+ *     description: Archive a sample by {id}.
  *     tags:
  *       - Samples
  *     parameters:
@@ -26,18 +23,13 @@ import { APIRequest } from 'shared/types/api';
  *         description: Sample archived.
  */
 
-export const archiveSample = middy(async (event: APIGatewayProxyEventV2) => {
-  const { custom } = event as APIGatewayProxyEventV2 & {
-    custom: APIRequest<{ id: string }>;
-  };
+export const archiveSample = middy(async (event: APIGatewayEventType) => {
+  const validated = idSampleSchema.safeParse(event.pathParameters);
 
-  const { id } = custom.request;
-  const records = await sampleService.archive([id]);
+  if (!validated.success)
+    return makeAPIResponse({ type: 'BadRequest', error: { errors: validated.error } });
 
-  return createAPIResponse({ type: APIResponseTypes.Archived, response: { records } });
-}).use(
-  validationMiddleware({
-    type: ['path'],
-    validatorSchema: archiveSampleSchema,
-  })
-);
+  const records = await sampleService.archive([validated.data.id]);
+
+  return makeAPIResponse({ type: 'Archived', data: { records } });
+});

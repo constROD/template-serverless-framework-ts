@@ -1,26 +1,27 @@
 node_modules
-dist
-build
 
+commitlint.config.js
 Dockerfile
 
-.DS_Store
 .eslintcache
 .vscode
 .serverless
 .esbuild
 .pnpm-store
 
+build
+dist
+
+.DS_Store
 .env
 .env.*
 .npmrc
 .aws-credentials
 .aws-config
+*.tsbuildinfo
 
-*-lock.json
-*-lock.yaml
-*.lock
-
+logs
+*.log
 *-debug.log*
 *-error.log*
 

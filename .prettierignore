@@ -1,17 +1,29 @@
-# directories
-node_modules/
-dist/
-build/
-coverage/
-logs/
+node_modules
 
-# secrets
-.env
-
-# logs
-*-error.log
-*-debug.log
-
-# misc
 .eslintcache
+.pnpm-store
+.serverless
+.esbuild
+
+build
+dist
+
+.DS_Store
+.env
+.env.*
+.env-encoded
+.npmrc
+.aws-credentials
+.aws-config
+*.tsbuildinfo
+
+!**.example
+
+*-lock.json
 *-lock.yaml
+*.lock
+
+logs
+*.log
+*-debug.log*
+*-error.log*

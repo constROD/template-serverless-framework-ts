@@ -1,7 +1,4 @@
-// import { appendStage } from 'shared/utils/helpers';
-
 import type { AWS } from '@serverless/typescript';
-// import { Customs, Serverless } from 'shared/constants/common';
 
 /**
  * This file contains values that are used in other parts of the
@@ -11,10 +8,10 @@ import type { AWS } from '@serverless/typescript';
 export const custom: AWS['custom'] = {
   /* SSM variables (from Secrets Manager) */
   // TODO: Uncomment the following line and add the required variables for SSM
-  // [Customs.Secrets]: `\${ssm:/aws/reference/secretsmanager/${Serverless.ServiceName}/${Serverless.Stage}}`,
+  // [Customs.Secrets]: `\${ssm:/aws/reference/secretsmanager/${SERVERLESS.ServiceName}/${SERVERLESS.Stage}}`,
 
   // TODO: Uncomment the following line and add the required variables for centralized bucket for service
-  // [Customs.Bucket]: { 'Fn::ImportValue': appendStage(Customs.Bucket) },
+  // [Customs.Bucket]: { 'Fn::ImportValue': appendStage(CUSTOMS.Bucket) },
 
   esbuild: {
     bundle: true,

@@ -1,7 +1,6 @@
-import { Handler } from 'aws-lambda';
+import { type Handler } from 'aws-lambda';
 import { openApiSchema } from 'modules/swagger/schema';
 
-// eslint-disable-next-line @typescript-eslint/require-await
 const handler: Handler = async event => {
   if (event.rawPath === '/swagger.json') {
     return {

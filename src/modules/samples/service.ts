@@ -1,11 +1,11 @@
-import { CreateSample, Sample, UpdateSample } from 'modules/samples/types';
-import { Databases, SampleEntities } from 'shared/constants/database';
+import { TABLES } from 'shared/constants/database';
 import { PGService } from 'shared/services/pg';
-import { getKnexConnection } from 'shared/utils/database';
+import { connection } from 'shared/utils/database';
+import { type Sample } from './types';
 
-export class SampleService extends PGService<Sample, CreateSample, UpdateSample> {
+export class SampleService extends PGService<Sample> {
   constructor() {
-    super({ connection: getKnexConnection(Databases.Sample), tableName: SampleEntities.Sample });
+    super({ connection, tableName: TABLES.Samples });
   }
 }
 

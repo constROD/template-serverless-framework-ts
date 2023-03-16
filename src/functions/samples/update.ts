@@ -1,12 +1,8 @@
 import middy from '@middy/core';
-import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { sampleService } from 'modules/samples/service';
-import { UpdateSample } from 'modules/samples/types';
 import { updateSampleSchema } from 'modules/samples/validations';
-import { APIResponseTypes } from 'shared/constants/api';
-import { createAPIResponse } from 'shared/helpers/api';
-import { validationMiddleware } from 'shared/middlewares/validation';
-import { APIRequest } from 'shared/types/api';
+import { type APIGatewayEventType } from 'shared/types/http';
+import { makeAPIResponse } from 'shared/utils/http';
 
 /**
  * @openapi
@@ -42,19 +38,20 @@ import { APIRequest } from 'shared/types/api';
  *         description: Sample updated.
  */
 
-export const updateSample = middy(async (event: APIGatewayProxyEventV2) => {
-  const { custom } = event as APIGatewayProxyEventV2 & {
-    custom: APIRequest<UpdateSample>;
-  };
+export const updateSample = middy(
+  async (event: APIGatewayEventType<{ body: Record<string, unknown> }>) => {
+    const validated = updateSampleSchema.safeParse({
+      ...event.pathParameters,
+      ...event.body,
+    });
 
-  const { id, ...request } = custom.request;
+    if (!validated.success)
+      return makeAPIResponse({ type: 'BadRequest', error: { errors: validated.error } });
 
-  const records = await sampleService.update(id, request);
+    const { id, ...values } = validated.data;
 
-  return createAPIResponse({ type: APIResponseTypes.Updated, response: { records } });
-}).use(
-  validationMiddleware({
-    type: ['path', 'body'],
-    validatorSchema: updateSampleSchema,
-  })
+    const records = await sampleService.update(id, values);
+
+    return makeAPIResponse({ type: 'Updated', data: { records } });
+  }
 );

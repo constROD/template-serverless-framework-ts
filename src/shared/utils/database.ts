@@ -1,12 +1,12 @@
-import knex, { Knex } from 'knex';
+import knex, { type Knex } from 'knex';
 import pg from 'pg';
-import { DB_HOST, DB_PASSWORD, DB_PORT, DB_USERNAME } from 'shared/constants/database';
+import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME } from 'shared/constants/environments';
 
 pg.types.setTypeParser(pg.types.builtins.INT8, (value: string) => Number(value));
 pg.types.setTypeParser(pg.types.builtins.FLOAT8, (value: string) => Number(value));
 pg.types.setTypeParser(pg.types.builtins.NUMERIC, (value: string) => Number(value));
 
-const commonConnectionProperties: Partial<Knex.PgConnectionConfig> = {
+const connectionConfig: Partial<Knex.PgConnectionConfig> = {
   host: DB_HOST,
   port: DB_PORT,
   user: DB_USERNAME,
@@ -15,12 +15,15 @@ const commonConnectionProperties: Partial<Knex.PgConnectionConfig> = {
 
 const pool: Knex.Config['pool'] = { min: 1, max: 1 };
 
-export const getKnexConnection = (database: string) =>
+export const connect = (database: string) =>
   knex({
     client: 'pg',
     connection: {
-      ...commonConnectionProperties,
+      ...connectionConfig,
       database,
     },
     pool,
   });
+
+// TODO: Uncomment the following lines when you need to use a database.
+export const connection = connect(DB_NAME);

@@ -1,7 +1,6 @@
 import middy from '@middy/core';
 import { sampleService } from 'modules/samples/service';
-import { APIResponseTypes } from 'shared/constants/api';
-import { createAPIResponse } from 'shared/helpers/api';
+import { makeAPIResponse } from 'shared/utils/http';
 
 /**
  * @openapi
@@ -9,7 +8,7 @@ import { createAPIResponse } from 'shared/helpers/api';
  *   get:
  *     description: Get list of samples.
  *     tags:
- *       - Sample
+ *       - Samples
  *     responses:
  *       200:
  *         description: List of samples.
@@ -18,8 +17,8 @@ import { createAPIResponse } from 'shared/helpers/api';
 export const listOfSamples = middy(async () => {
   const { records, totalRecords } = await sampleService.list();
 
-  return createAPIResponse({
-    type: APIResponseTypes.Success,
-    response: { records, totalRecords },
+  return makeAPIResponse({
+    type: 'Success',
+    data: { records, totalRecords },
   });
 });

@@ -9,7 +9,7 @@ const options: swaggerJsdoc.Options = {
       version,
     },
   },
-  apis: ['src/functions/**/*.ts', 'src/modules/swagger/**/*.ts'], // files containing annotations as above
+  apis: ['src/functions/**/*.ts', 'src/modules/swagger/**/*.ts'],
 };
 
 /**
@@ -26,4 +26,5 @@ const options: swaggerJsdoc.Options = {
  *         description: ID of a record
  *         format: uuid
  */
+
 export const openApiSchema = swaggerJsdoc(options);

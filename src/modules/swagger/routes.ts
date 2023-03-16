@@ -1,10 +1,10 @@
 import { Method } from '@middy/http-router';
-import { Route } from 'shared/types/api';
+import { type Route } from 'shared/types/http';
 
 export const swaggerRoutes: Omit<Route, 'handler'>[] = [
   {
     method: Method.Get,
-    path: '/docs',
+    path: '/',
   },
   {
     method: Method.Get,
