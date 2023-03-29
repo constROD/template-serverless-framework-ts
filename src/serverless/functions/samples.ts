@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { type AWS } from '@serverless/typescript';
-import { sampleRoutes } from 'functions/samples/handler';
-import { FUNCTIONS } from 'shared/constants/functions';
-import { makeHandlerPath, makeRoutes } from 'shared/utils/lambda';
+import { SAMPLE_ROUTES } from 'modules/samples/constants';
+import { FUNCTIONS } from 'serverless/constants';
+import { makeHandlerPath, makeRoutes } from 'shared/utils/handler';
 
 export const samplesFnConfig: AWS['functions'] = {
   [FUNCTIONS.Samples]: {
     handler: makeHandlerPath(FUNCTIONS.Samples),
-    events: makeRoutes(sampleRoutes),
+    events: makeRoutes(SAMPLE_ROUTES),
     environment: {
       /* Put here all the environment variables that you need */
     },

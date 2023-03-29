@@ -13,6 +13,15 @@ type MakeAPIResponseOption<TData, TError> = {
   isRaw?: boolean;
 };
 
+/**
+ * Make a response for API Gateway
+ *
+ * @param type based on HTTP_RESPONSES
+ * @param data the data to be returned
+ * @param error the error to be returned
+ * @param isRaw option to return raw data or not
+ * @returns API Gateway response
+ */
 export const makeAPIResponse = <TData, TError>({
   type,
   data,

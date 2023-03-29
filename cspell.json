@@ -13,7 +13,8 @@
     "middyfied",
     "npmrc",
     "constrod",
-    "npmjs"
+    "npmjs",
+    "accum"
   ],
   "ignorePaths": [
     "node_modules/",

@@ -17,3 +17,8 @@ export const CUSTOMS = {
 export const RESOURCES = {
   Samples: 'samples',
 } as const;
+
+export const FUNCTIONS = {
+  Swagger: 'swagger',
+  Samples: 'samples',
+} as const;

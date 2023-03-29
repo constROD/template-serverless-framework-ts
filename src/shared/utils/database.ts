@@ -15,7 +15,13 @@ const connectionConfig: Partial<Knex.PgConnectionConfig> = {
 
 const pool: Knex.Config['pool'] = { min: 1, max: 1 };
 
-export const connect = (database: string) =>
+/**
+ *
+ * @param database a database name
+ * @returns knex instance
+ */
+
+const connect = (database: string) =>
   knex({
     client: 'pg',
     connection: {
@@ -25,5 +31,7 @@ export const connect = (database: string) =>
     pool,
   });
 
-// TODO: Uncomment the following lines when you need to use a database.
+/**
+ * Establishes a connection to the database.
+ */
 export const connection = connect(DB_NAME);

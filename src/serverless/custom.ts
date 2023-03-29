@@ -8,10 +8,10 @@ import type { AWS } from '@serverless/typescript';
 export const custom: AWS['custom'] = {
   /* SSM variables (from Secrets Manager) */
   // TODO: Uncomment the following line and add the required variables for SSM
-  // [Customs.Secrets]: `\${ssm:/aws/reference/secretsmanager/${SERVERLESS.ServiceName}/${SERVERLESS.Stage}}`,
+  // [CUSTOMS.Secrets]: `\${ssm:/aws/reference/secretsmanager/${SERVERLESS.ServiceName}/${SERVERLESS.Stage}}`,
 
   // TODO: Uncomment the following line and add the required variables for centralized bucket for service
-  // [Customs.Bucket]: { 'Fn::ImportValue': appendStage(CUSTOMS.Bucket) },
+  // [CUSTOMS.Bucket]: { 'Fn::ImportValue': appendStage(CUSTOMS.Bucket) },
 
   esbuild: {
     bundle: true,
