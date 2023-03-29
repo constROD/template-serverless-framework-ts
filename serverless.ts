@@ -9,6 +9,7 @@ import { functions } from 'serverless/functions';
 import { resources } from 'serverless/resources';
 
 import type { AWS } from '@serverless/typescript';
+import { environment } from 'serverless/environments';
 
 const serverlessConfiguration: AWS = {
   service: SERVICE_NAME,
@@ -29,6 +30,7 @@ const serverlessConfiguration: AWS = {
         allowedMethods: ['*'],
       },
     },
+    environment,
   },
   functions,
   custom,
