@@ -70,6 +70,7 @@ export const makeHandler = ({
  * @param routes Array of routes from @middy/http-router
  * @returns makeHandler with httpRouterHandler
  */
+
 export const makeRouterHandler = (routes: Route[]) =>
   makeHandler({ handler: httpRouterHandler(routes) });
 

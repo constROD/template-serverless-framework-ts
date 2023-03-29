@@ -1,6 +1,5 @@
-import { archiveSample } from 'modules/samples/functions/archive';
-
 import { SAMPLE_ROUTES } from 'modules/samples/constants';
+import { archiveSample } from 'modules/samples/functions/archive';
 import { type HandlerDictionary } from 'shared/types/handler';
 import { type Route } from 'shared/types/http';
 import { makeRouterHandler } from 'shared/utils/handler';
@@ -22,7 +21,7 @@ const handlerDictionary: HandlerDictionary<typeof SAMPLE_ROUTES> = {
 
 const handlerRoutes: Route[] = Object.entries(SAMPLE_ROUTES).map(([handlerName, route]) => ({
   ...route,
-  handler: handlerDictionary[handlerName as keyof typeof handlerDictionary],
+  handler: handlerDictionary[handlerName as keyof typeof SAMPLE_ROUTES],
 }));
 
 export const run = makeRouterHandler(handlerRoutes);
