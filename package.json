@@ -20,7 +20,7 @@
     "deploy:dev": "sls deploy --stage dev",
     "deploy:staging": "sls deploy --stage staging",
     "deploy:prod": "sls deploy --stage prod",
-    "encode:env": "cat .env | base64 -w 0 > .env-encoded",
+    "env:encode": "cat .env | base64 -w 0 > .env-encoded",
     "format": "prettier --write ./src/**/*.ts",
     "lint": "eslint --ext .ts ./",
     "lint:fix": "eslint ./src --fix --ext .js,.ts",
