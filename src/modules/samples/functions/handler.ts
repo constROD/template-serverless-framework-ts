@@ -10,6 +10,7 @@ import { getSample } from './get';
 import { listOfSamples } from './list';
 import { updateSample } from './update';
 
+/* Consolidation of handlers */
 const handlerDictionary: HandlerDictionary<typeof SAMPLE_ROUTES> = {
   listOfSamples: listOfSamples.handler,
   getSample: getSample.handler,
@@ -19,13 +20,16 @@ const handlerDictionary: HandlerDictionary<typeof SAMPLE_ROUTES> = {
   archiveSample: archiveSample.handler,
 };
 
+/* Combination of routes and handlers for middy `httpRouterHandler` */
 const handlerRoutes: Route[] = Object.entries(SAMPLE_ROUTES).map(([handlerName, route]) => ({
   ...route,
   handler: handlerDictionary[handlerName as keyof typeof SAMPLE_ROUTES],
 }));
 
+/* Entrypoint of lambda functions */
 export const run = makeRouterHandler(handlerRoutes);
 
+/* Consolidation of swagger docs */
 export const samplesSwaggerPaths = makeSwaggerPaths([
   listOfSamples.docs,
   getSample.docs,

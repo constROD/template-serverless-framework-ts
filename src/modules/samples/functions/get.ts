@@ -6,6 +6,7 @@ import { type APIGatewayEventType } from 'shared/types/http';
 import { makeAPIResponse } from 'shared/utils/http';
 import type swaggerJSDoc from 'swagger-jsdoc';
 
+/* Handler */
 const handler = middy(async (event: APIGatewayEventType) => {
   const validated = getSampleSchema.safeParse(event.pathParameters);
 
@@ -17,6 +18,7 @@ const handler = middy(async (event: APIGatewayEventType) => {
   return makeAPIResponse({ type: 'Success', data: { records } });
 });
 
+/* Swagger */
 const docs: swaggerJSDoc.Paths = {
   [SAMPLE_ROUTES.getSample.path]: {
     get: {

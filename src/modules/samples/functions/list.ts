@@ -4,6 +4,7 @@ import { sampleService } from 'modules/samples/service';
 import { makeAPIResponse } from 'shared/utils/http';
 import type swaggerJSDoc from 'swagger-jsdoc';
 
+/* Handler */
 const handler = middy(async () => {
   const { records, totalRecords } = await sampleService.list();
 
@@ -13,6 +14,7 @@ const handler = middy(async () => {
   });
 });
 
+/* Swagger */
 const docs: swaggerJSDoc.Paths = {
   [SAMPLE_ROUTES.listOfSamples.path]: {
     get: {

@@ -17,6 +17,7 @@
   "main": "serverless.ts",
   "scripts": {
     "dev": "nodemon --watch 'src/**' --watch 'serverless.ts' --ext 'ts' --exec \"sls offline --host 0.0.0.0\"",
+    "print": "sls print",
     "deploy:dev": "sls deploy --stage dev",
     "deploy:staging": "sls deploy --stage staging",
     "deploy:prod": "sls deploy --stage prod",

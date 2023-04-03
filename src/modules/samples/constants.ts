@@ -5,27 +5,27 @@ import { type MakeRoutesOption } from 'shared/utils/handler';
 const routes = {
   listOfSamples: {
     method: Method.Get,
-    path: `/${FUNCTIONS.Samples}`,
+    path: `/${FUNCTIONS.Samples.name}`,
   },
   getSample: {
     method: Method.Get,
-    path: `/${FUNCTIONS.Samples}/{id}`,
+    path: `/${FUNCTIONS.Samples.name}/{id}`,
   },
   createSample: {
     method: Method.Post,
-    path: `/${FUNCTIONS.Samples}`,
+    path: `/${FUNCTIONS.Samples.name}`,
   },
   updateSample: {
     method: Method.Put,
-    path: `/${FUNCTIONS.Samples}/{id}`,
+    path: `/${FUNCTIONS.Samples.name}/{id}`,
   },
   deleteSample: {
     method: Method.Delete,
-    path: `/${FUNCTIONS.Samples}/{id}`,
+    path: `/${FUNCTIONS.Samples.name}/{id}`,
   },
   archiveSample: {
     method: Method.Delete,
-    path: `/${FUNCTIONS.Samples}/{id}/archive`,
+    path: `/${FUNCTIONS.Samples.name}/{id}/archive`,
   },
 } as const;
 
