@@ -9,10 +9,10 @@
 
 ## Folder structure
 
-- `src` - main source code
-- `src/serverless` - serverless configuration
-- `src/modules` - modules (e.g. `users`, `auth`, `reports`)
-- `src/shared` - shared code (e.g. `utils`, `constants`, `types`, `middlewares`)
+- `src` - main source code.
+- `src/serverless` - serverless configuration.
+- `src/modules` - modules (e.g. `users`, `auth`, `reports`).
+- `src/shared` - shared code (e.g. `utils`, `constants`, `types`, `middlewares`).
 
 ## Steps to create a new module
 
