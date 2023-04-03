@@ -6,6 +6,7 @@
 - `UPPER_CASE` - for constants.
 - `PascalCase` - for classes and types.
 - `snake_case` - for database tables and columns.
+- `camelCase` - for functions and etc.
 
 ## Folder structure
 
