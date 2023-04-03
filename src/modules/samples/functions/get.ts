@@ -1,6 +1,6 @@
 import middy from '@middy/core';
 import { SAMPLE_ROUTES } from 'modules/samples/constants';
-import { sampleService } from 'modules/samples/service';
+import { sampleService } from 'modules/samples/services';
 import { getSampleSchema } from 'modules/samples/validations';
 import { type APIGatewayEventType } from 'shared/types/http';
 import { makeAPIResponse } from 'shared/utils/http';

@@ -15,9 +15,9 @@ export const appendStage = (name: string) => `${name}-${SERVERLESS.Stage}`;
  *
  * @example
  *
- * const bucketName = custom(CUSTOMS.Secrets, 'some_key');
+ * const bucketName = custom(CUSTOMS.Secrets, 'SomeKey');
  *
- * Expected Output: '${self:custom.secrets.some_key}'
+ * Expected Output: '${self:custom.secrets.SomeKey}'
  */
 
 export const custom = (...variableNames: string[]) => `\${self:custom.${variableNames.join('.')}}`;

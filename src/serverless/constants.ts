@@ -4,8 +4,9 @@ import { transformToPascal } from 'shared/utils/common';
  * Your service name and this will also used for naming convention.
  *
  * @example
- *  - If you set this to `constrod` then the name of your lambda name will be
- * `constrod-dev-Samples`, `constrod-dev-SomeExample` and etc.
+ *
+ * If you set this to `constrod` then the name of your lambda/resource will be `constrod-dev-<FUNCTIONS/RESOURCES_KEYS>`.
+ * Ex. `constrod-dev-Samples`, `constrod-dev-SomeExample` and etc.
  */
 export const SERVICE_NAME = 'constrod' as const;
 

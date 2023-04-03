@@ -38,7 +38,7 @@ const serverlessConfiguration: AWS = {
   functions,
   custom,
   resources,
-  package: { individually: true },
+  package: { individually: true, excludeDevDependencies: true },
   plugins: [
     'serverless-esbuild',
     'serverless-offline',

@@ -1,6 +1,6 @@
 import middy from '@middy/core';
 import { SAMPLE_ROUTES } from 'modules/samples/constants';
-import { sampleService } from 'modules/samples/service';
+import { sampleService } from 'modules/samples/services';
 import { makeAPIResponse } from 'shared/utils/http';
 import type swaggerJSDoc from 'swagger-jsdoc';
 

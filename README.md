@@ -38,6 +38,12 @@ pnpm i
 pnpm dev
 ```
 
+**Clean:**
+
+```bash
+pnpm clean:<stage> # dev | staging | prod
+```
+
 **Deploy:**
 
 ```bash

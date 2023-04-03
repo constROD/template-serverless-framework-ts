@@ -18,9 +18,12 @@
   "scripts": {
     "dev": "nodemon --watch 'src/**' --watch 'serverless.ts' --ext 'ts' --exec \"sls offline --host 0.0.0.0\"",
     "print": "sls print",
-    "deploy:dev": "sls deploy --stage dev",
-    "deploy:staging": "sls deploy --stage staging",
-    "deploy:prod": "sls deploy --stage prod",
+    "clean:dev": "sls remove --stage dev --verbose",
+    "clean:staging": "sls remove --stage staging --verbose",
+    "clean:prod": "sls remove --stage prod --verbose",
+    "deploy:dev": "sls deploy --stage dev --verbose",
+    "deploy:staging": "sls deploy --stage staging --verbose",
+    "deploy:prod": "sls deploy --stage prod --verbose",
     "env:encode": "cat .env | base64 -w 0 > .env-encoded",
     "format": "prettier --write ./src/**/*.ts",
     "lint": "eslint --ext .ts ./",
@@ -34,7 +37,6 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
-    "dynamodb-toolbox": "^0.6.0",
     "knex": "^2.3.0",
     "lodash": "^4.17.21",
     "pg": "^8.9.0",

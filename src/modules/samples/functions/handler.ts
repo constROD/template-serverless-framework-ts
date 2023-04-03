@@ -30,7 +30,7 @@ const handlerRoutes: Route[] = Object.entries(SAMPLE_ROUTES).map(([handlerName, 
 export const run = makeRouterHandler(handlerRoutes);
 
 /* Consolidation of swagger docs */
-export const samplesSwaggerPaths = makeSwaggerPaths([
+export const docs = makeSwaggerPaths([
   listOfSamples.docs,
   getSample.docs,
   createSample.docs,

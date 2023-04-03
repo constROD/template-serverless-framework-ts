@@ -1,4 +1,5 @@
-import { samplesSwaggerPaths } from 'modules/samples/functions/handler';
+import { docs as samplesDocs } from 'modules/samples/functions/handler';
+import { docs as someExampleDocs } from 'modules/some-example/functions/handler';
 import { version } from 'package.json';
 import swaggerJsdoc from 'swagger-jsdoc';
 
@@ -10,7 +11,8 @@ const options: swaggerJsdoc.OAS3Options = {
       version,
     },
     paths: {
-      ...samplesSwaggerPaths,
+      ...samplesDocs,
+      ...someExampleDocs,
     },
   },
   apis: [],
