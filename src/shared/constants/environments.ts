@@ -3,6 +3,7 @@
  * * - You must add it to the `.env` file.
  * * - You must add it to the `.env.example` file.
  * * - You must add it to the `src/shared/constants/environments.ts` file.
+ * * - You must add it to the `docker-compose.yaml` file.
  */
 
 import { config } from 'dotenv';
