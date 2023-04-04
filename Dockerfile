@@ -21,14 +21,14 @@ RUN npm i -g serverless
 
 # Copy needed files for installation.
 COPY package.json /app
-COPY .npmrc /app
-COPY .aws-config /app
-COPY .aws-credentials /app
+# COPY .npmrc /app
+# COPY .aws-config /app
+# COPY .aws-credentials /app
 
 # Setup AWS Credentials.
-RUN mkdir -p ~/.aws
-RUN touch ~/.aws/config && cat .aws-config >~/.aws/config
-RUN touch ~/.aws/credentials && cat .aws-credentials >~/.aws/credentials
+# RUN mkdir -p ~/.aws
+# RUN touch ~/.aws/config && cat .aws-config >~/.aws/config
+# RUN touch ~/.aws/credentials && cat .aws-credentials >~/.aws/credentials
 
 # Install packages.
 RUN pnpm i

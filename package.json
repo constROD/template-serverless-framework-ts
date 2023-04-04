@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "serverless.ts",
   "scripts": {
-    "dev": "nodemon --watch 'src/**' --watch 'serverless.ts' --ext 'ts' --exec \"sls offline --host 0.0.0.0\"",
+    "dev": "nodemon --watch src/ --watch serverless.ts -e ts --exec \"sls offline --host 0.0.0.0\"",
     "print": "sls print",
     "clean:dev": "sls remove --stage dev --verbose",
     "clean:staging": "sls remove --stage staging --verbose",
