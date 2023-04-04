@@ -16,10 +16,11 @@
     "isolatedModules": true,
     "incremental": true,
     "noUncheckedIndexedAccess": true,
-    "outDir": ".build"
+    "outDir": ".build",
+    "types": ["node", "jest"]
   },
-  "include": ["./serverless.ts", "./src/**/*.ts"],
-  "exclude": ["./node_modules", "./serverless/**/*"],
+  "include": ["./src", "./tests", "./serverless.ts"],
+  "exclude": ["./node_modules"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }

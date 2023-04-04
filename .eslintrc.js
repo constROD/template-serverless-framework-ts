@@ -54,4 +54,12 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['**/tests/**/*.test.ts', '**/tests/**/*.test.tsx'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };
