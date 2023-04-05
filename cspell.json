@@ -17,13 +17,13 @@
     "accum"
   ],
   "ignorePaths": [
-    "node_modules",
-    "build",
-    "dist",
-    ".husky",
-    "pnpm-lock.yaml",
-    "package.json",
-    "docker-compose.yaml",
-    "Dockerfile"
+    "./node_modules",
+    "./build",
+    "./dist",
+    "./.husky",
+    "./pnpm-lock.yaml",
+    "./package.json",
+    "./docker-compose.yaml",
+    "./Dockerfile"
   ]
 }
