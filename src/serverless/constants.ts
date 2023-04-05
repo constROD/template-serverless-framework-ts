@@ -19,6 +19,9 @@ export const DEPLOYMENT_BUCKET_NAME = 'constrod' as const;
 /* Default timeout for lambda functions */
 export const LAMBDA_TIMEOUT = 10 as const;
 
+/* AWS Region */
+export const AWS_REGION = 'ap-southeast-1' as const;
+
 export const SERVERLESS = {
   ServiceName: `\${self:service}`,
   Stage: `\${opt:stage, 'dev'}`,

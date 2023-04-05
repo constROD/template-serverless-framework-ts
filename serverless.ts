@@ -1,4 +1,6 @@
+/* eslint-disable import/no-import-module-exports */
 import {
+  AWS_REGION,
   DEPLOYMENT_BUCKET_NAME,
   LAMBDA_TIMEOUT,
   SERVERLESS,
@@ -11,8 +13,6 @@ import { resources } from 'serverless/resources';
 import type { AWS } from '@serverless/typescript';
 import { environment } from 'serverless/environments';
 
-const region = 'ap-southeast-1';
-
 const serverlessConfiguration: AWS = {
   service: SERVICE_NAME,
   frameworkVersion: '3',
@@ -22,7 +22,7 @@ const serverlessConfiguration: AWS = {
     runtime: 'nodejs16.x',
     timeout: LAMBDA_TIMEOUT,
     deploymentBucket: {
-      name: `${DEPLOYMENT_BUCKET_NAME}-${region}`,
+      name: `${DEPLOYMENT_BUCKET_NAME}-${AWS_REGION}`,
     },
     httpApi: {
       name: `${SERVERLESS.ServiceName}-apis-${SERVERLESS.Stage}`,
@@ -32,7 +32,7 @@ const serverlessConfiguration: AWS = {
         allowedMethods: ['*'],
       },
     },
-    region,
+    region: AWS_REGION,
     environment,
   },
   functions,
