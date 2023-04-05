@@ -1,7 +1,7 @@
 import middy from '@middy/core';
 import httpErrorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
-import httpRouterHandler from '@middy/http-router';
+import httpRouterHandler, { type Method } from '@middy/http-router';
 import { type Handler } from 'aws-lambda';
 import { type Route } from 'shared/types/http';
 import { makeAPIResponse } from './http';
@@ -72,7 +72,9 @@ export const makeHandler = ({
  */
 
 export const makeRouterHandler = (routes: Route[]) =>
-  makeHandler({ handler: httpRouterHandler(routes) });
+  makeHandler({
+    handler: httpRouterHandler(routes as (Omit<Route, 'method'> & { method: Method })[]),
+  });
 
 /**
  * Make handler path

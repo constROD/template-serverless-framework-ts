@@ -1,30 +1,30 @@
-import { Method } from '@middy/http-router';
 import { FUNCTIONS } from 'serverless/constants';
+import { type Route } from 'shared/types/http';
 import { type MakeRoutesOption } from 'shared/utils/handler';
 
-const routes = {
+const routes: Record<string, Omit<Route, 'handler'>> = {
   listOfSamples: {
-    method: Method.Get,
+    method: 'GET',
     path: `/${FUNCTIONS.Samples.name}`,
   },
   getSample: {
-    method: Method.Get,
+    method: 'GET',
     path: `/${FUNCTIONS.Samples.name}/{id}`,
   },
   createSample: {
-    method: Method.Post,
+    method: 'POST',
     path: `/${FUNCTIONS.Samples.name}`,
   },
   updateSample: {
-    method: Method.Put,
+    method: 'PUT',
     path: `/${FUNCTIONS.Samples.name}/{id}`,
   },
   deleteSample: {
-    method: Method.Delete,
+    method: 'DELETE',
     path: `/${FUNCTIONS.Samples.name}/{id}`,
   },
   archiveSample: {
-    method: Method.Delete,
+    method: 'DELETE',
     path: `/${FUNCTIONS.Samples.name}/{id}/archive`,
   },
 } as const;

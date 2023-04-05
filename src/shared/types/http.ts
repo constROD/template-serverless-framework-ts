@@ -1,8 +1,7 @@
-import { type Method } from '@middy/http-router';
 import { type APIGatewayProxyEventV2, type Handler } from 'aws-lambda';
 
 export interface Route {
-  method: Method;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   path: string;
   handler: Handler;
 }

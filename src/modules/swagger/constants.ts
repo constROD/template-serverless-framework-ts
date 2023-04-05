@@ -1,13 +1,13 @@
-import { Method } from '@middy/http-router';
+import { type Route } from 'shared/types/http';
 import { type MakeRoutesOption } from 'shared/utils/handler';
 
-const routes = {
+const routes: Record<string, Omit<Route, 'handler'>> = {
   docs: {
-    method: Method.Get,
+    method: 'GET',
     path: '/',
   },
   swaggerJson: {
-    method: Method.Get,
+    method: 'GET',
     path: '/swagger.json',
   },
 } as const;
