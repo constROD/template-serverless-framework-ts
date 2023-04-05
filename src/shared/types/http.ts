@@ -1,10 +1,4 @@
-import { type APIGatewayProxyEventV2, type Handler } from 'aws-lambda';
-
-export interface Route {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  path: string;
-  handler: Handler;
-}
+import { type APIGatewayProxyEventV2 } from 'aws-lambda';
 
 export type APIGatewayEventType<TEvent = undefined> = TEvent extends undefined
   ? APIGatewayProxyEventV2

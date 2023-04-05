@@ -1,8 +1,7 @@
 import { FUNCTIONS } from 'serverless/constants';
-import { type Route } from 'shared/types/http';
 import { type MakeRoutesOption } from 'shared/utils/handler';
 
-const routes: Record<string, Omit<Route, 'handler'>> = {
+const routes = {
   listOfSamples: {
     method: 'GET',
     path: `/${FUNCTIONS.Samples.name}`,

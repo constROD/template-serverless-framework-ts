@@ -1,7 +1,6 @@
-import { type Route } from 'shared/types/http';
 import { type MakeRoutesOption } from 'shared/utils/handler';
 
-const routes: Record<string, Omit<Route, 'handler'>> = {
+const routes = {
   docs: {
     method: 'GET',
     path: '/',

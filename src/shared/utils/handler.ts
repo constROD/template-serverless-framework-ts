@@ -1,9 +1,9 @@
 import middy from '@middy/core';
 import httpErrorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
-import httpRouterHandler, { type Method } from '@middy/http-router';
+import httpRouterHandler from '@middy/http-router';
 import { type Handler } from 'aws-lambda';
-import { type Route } from 'shared/types/http';
+import { type HandlerRoute, type Route } from 'shared/types/handler';
 import { makeAPIResponse } from './http';
 
 interface HandlerOption {
@@ -71,9 +71,9 @@ export const makeHandler = ({
  * @returns makeHandler with httpRouterHandler
  */
 
-export const makeRouterHandler = (routes: Route[]) =>
+export const makeRouterHandler = (routes: HandlerRoute[]) =>
   makeHandler({
-    handler: httpRouterHandler(routes as (Omit<Route, 'method'> & { method: Method })[]),
+    handler: httpRouterHandler(routes),
   });
 
 /**
@@ -87,7 +87,7 @@ export const makeRouterHandler = (routes: Route[]) =>
 export const makeHandlerPath = (moduleName: string, handlerName?: string) =>
   `src/modules/${moduleName}/functions/${handlerName || 'handler'}.run`;
 
-export type MakeRoutesOption<TRoutes> = Record<keyof TRoutes, Omit<Route, 'handler'>>;
+export type MakeRoutesOption<TRoutes> = Record<keyof TRoutes, Route>;
 
 /**
  * Make routes for lambda function

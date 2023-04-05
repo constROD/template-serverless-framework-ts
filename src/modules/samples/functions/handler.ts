@@ -1,7 +1,6 @@
 import { SAMPLE_ROUTES } from 'modules/samples/constants';
 import { archiveSample } from 'modules/samples/functions/archive';
-import { type HandlerDictionary } from 'shared/types/handler';
-import { type Route } from 'shared/types/http';
+import { type HandlerDictionary, type HandlerRoute } from 'shared/types/handler';
 import { makeRouterHandler } from 'shared/utils/handler';
 import { makeSwaggerPaths } from 'shared/utils/swagger';
 import { createSample } from './create';
@@ -21,10 +20,10 @@ const handlerDictionary: HandlerDictionary<typeof SAMPLE_ROUTES> = {
 };
 
 /* Combination of routes and handlers for middy `httpRouterHandler` */
-const handlerRoutes: Route[] = Object.entries(SAMPLE_ROUTES).map(([handlerName, route]) => ({
+const handlerRoutes = Object.entries(SAMPLE_ROUTES).map(([handlerName, route]) => ({
   ...route,
-  handler: handlerDictionary[handlerName as keyof typeof SAMPLE_ROUTES],
-}));
+  handler: handlerDictionary[handlerName as keyof typeof handlerDictionary],
+})) as HandlerRoute[];
 
 /* Entrypoint of lambda functions */
 export const run = makeRouterHandler(handlerRoutes);
