@@ -1,0 +1,72 @@
+name: Deploy
+
+on:
+  push:
+    branches: [staging, main]
+
+jobs:
+  deploy-to-staging:
+    name: Deploy Serverless to Staging
+    if: github.event.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: staging
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+          cache: 'pnpm'
+
+      - name: Install Packages
+        run: pnpm install --frozen-lockfile
+
+      - name: Serverless Deploy
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy --verbose --stage staging
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
+
+  deploy-to-production:
+    name: Deploy Serverless to Production
+    if: github.event.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: staging
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+          cache: 'pnpm'
+
+      - name: Install Packages
+        run: pnpm install --frozen-lockfile
+
+      - name: Serverless Deploy
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy --verbose --stage prod
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'

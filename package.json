@@ -14,7 +14,6 @@
   "description": "Custom Template for Serverless TypeScript",
   "author": "Rodrick Alcantara <rialcantara21@gmail.com>",
   "license": "MIT",
-  "main": "serverless.ts",
   "scripts": {
     "dev": "nodemon --watch src/ --watch serverless.ts -e ts --exec \"sls offline --host 0.0.0.0\"",
     "print": "sls print",
@@ -28,11 +27,16 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "env:encode": "cat .env | base64 -w 0 > .env-encoded",
-    "format": "prettier --write ./src/**/*.ts",
-    "lint": "eslint --ext .ts ./",
-    "lint:fix": "eslint ./src --fix --ext .js,.ts",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged --allow-empty"
+    "env:decode": "echo .env-encoded | base64 -d > .env-decoded",
+    "format": "prettier --write ./src/**/*.ts{,x}",
+    "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx",
+    "lint:types": "tsc",
+    "lint:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin",
+    "ci:lint": "concurrently \"pnpm lint\" \"pnpm lint:types\" \"pnpm lint:spell\"",
+    "ci:test": "concurrently \"pnpm test\"",
+    "pre-commit": "concurrently \"lint-staged --allow-empty\" \"pnpm lint:spell\"",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",
