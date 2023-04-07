@@ -10,12 +10,6 @@ import { transformToPascal } from 'shared/utils/common';
  */
 export const SERVICE_NAME = 'constrod' as const;
 
-/**
- * Your deployment bucket where you will save the serverless zips
- * * Note: You must create this bucket first before deploying.
- */
-export const DEPLOYMENT_BUCKET_NAME = 'constrod' as const;
-
 /* Default timeout for lambda functions */
 export const LAMBDA_TIMEOUT = 10 as const;
 
@@ -29,7 +23,6 @@ export const SERVERLESS = {
 
 export const CUSTOMS = {
   Secrets: 'secrets',
-  Bucket: 'constrod-resources',
 } as const;
 
 /**

@@ -6,18 +6,3 @@ import { SERVERLESS } from './constants';
  * @returns a name with stage appended
  */
 export const appendStage = (name: string) => `${name}-${SERVERLESS.Stage}`;
-
-/**
- * Get a custom variable from /src/serverless/custom.ts configuration
- *
- * @param variableNames variable names to be joined with dot
- * @returns a string with custom variables
- *
- * @example
- *
- * const bucketName = custom(CUSTOMS.Secrets, 'SomeKey');
- *
- * Expected Output: '${self:custom.secrets.SomeKey}'
- */
-
-export const custom = (...variableNames: string[]) => `\${self:custom.${variableNames.join('.')}}`;

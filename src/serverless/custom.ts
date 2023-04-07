@@ -10,9 +10,6 @@ export const custom: AWS['custom'] = {
   // TODO: Uncomment the following line and add the required variables for SSM
   // [CUSTOMS.Secrets]: `\${ssm:/aws/reference/secretsmanager/${SERVERLESS.ServiceName}/${SERVERLESS.Stage}}`,
 
-  // TODO: Uncomment the following line and add the required variables for centralized bucket for service
-  // [CUSTOMS.Bucket]: { 'Fn::ImportValue': appendStage(CUSTOMS.Bucket) },
-
   esbuild: {
     bundle: true,
     minify: false,
