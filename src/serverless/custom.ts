@@ -15,8 +15,6 @@ export const custom: AWS['custom'] = {
     minify: false,
     sourcemap: true,
     exclude: [
-      'aws-sdk',
-
       /* Packages below are packages unnecessarily required by Knex.js */
       'mysql',
       'mysql2',
