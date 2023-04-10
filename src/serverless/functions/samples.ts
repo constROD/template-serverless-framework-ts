@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { type AWS } from '@serverless/typescript';
 import { SAMPLE_ROUTES } from 'modules/samples/constants';
 import { FUNCTIONS } from 'serverless/constants';

@@ -1,4 +1,4 @@
-import type { AWS } from '@serverless/typescript';
+import { type AWS } from '@serverless/typescript';
 
 /**
  * This file contains values that are used in other parts of the

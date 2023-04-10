@@ -1,17 +1,18 @@
 /* eslint-disable import/no-import-module-exports */
+import { type AWS } from '@serverless/typescript';
 import { AWS_REGION, LAMBDA_TIMEOUT, SERVERLESS, SERVICE_NAME } from 'serverless/constants';
 import { custom } from 'serverless/custom';
-import { functions } from 'serverless/functions';
-import { resources } from 'serverless/resources';
-
-import type { AWS } from '@serverless/typescript';
 import { environment } from 'serverless/environments';
+import { functions } from 'serverless/functions';
+import { iam } from 'serverless/iam';
+import { resources } from 'serverless/resources';
 
 const serverlessConfiguration: AWS = {
   service: SERVICE_NAME,
   frameworkVersion: '3',
   provider: {
     name: 'aws',
+    region: AWS_REGION,
     stage: SERVERLESS.Stage,
     runtime: 'nodejs16.x',
     timeout: LAMBDA_TIMEOUT,
@@ -26,8 +27,8 @@ const serverlessConfiguration: AWS = {
         allowedMethods: ['*'],
       },
     },
-    region: AWS_REGION,
     environment,
+    iam,
   },
   functions,
   custom,
@@ -35,9 +36,9 @@ const serverlessConfiguration: AWS = {
   package: { individually: true, excludeDevDependencies: true },
   plugins: [
     'serverless-esbuild',
-    'serverless-offline',
-    'serverless-iam-roles-per-function',
     'serverless-deployment-bucket',
+    'serverless-iam-roles-per-function',
+    'serverless-offline',
   ],
 };
 
