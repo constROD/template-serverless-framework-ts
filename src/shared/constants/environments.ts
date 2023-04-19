@@ -7,6 +7,7 @@
  */
 
 import { config } from 'dotenv';
+import { z } from 'zod';
 
 config();
 
@@ -16,12 +17,20 @@ export const STAGES = {
   Prod: 'prod',
 } as const;
 
-export type StageType = (typeof STAGES)[keyof typeof STAGES];
+const envVariables = z.object({
+  STAGE: z.enum([STAGES.Dev, STAGES.Staging, STAGES.Prod]).default(STAGES.Dev),
+  DB_HOST: z.string(),
+  DB_PORT: z.coerce.number(),
+  DB_USERNAME: z.string(),
+  DB_PASSWORD: z.string(),
+  DB_NAME: z.string(),
+});
 
-export const STAGE = (process.env.STAGE as StageType) || STAGES.Dev;
-
-export const DB_HOST = process.env.DB_HOST || '';
-export const DB_PORT = process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432;
-export const DB_USERNAME = process.env.DB_USERNAME || '';
-export const DB_PASSWORD = process.env.DB_PASSWORD || '';
-export const DB_NAME = process.env.DB_NAME || '';
+export const env = envVariables.parse({
+  STAGE: process.env.STAGE,
+  DB_HOST: process.env.DB_HOST,
+  DB_PORT: process.env.DB_PORT,
+  DB_USERNAME: process.env.DB_USERNAME,
+  DB_PASSWORD: process.env.DB_PASSWORD,
+  DB_NAME: process.env.DB_NAME,
+});

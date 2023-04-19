@@ -1,4 +1,4 @@
-import { transformToPascal } from 'shared/utils/common';
+import { transformToPascal } from 'shared/utils/commons';
 import { makeSlsVariable } from './helpers';
 
 /**
