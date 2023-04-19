@@ -1,4 +1,3 @@
-import { transformToPascal } from 'shared/utils/commons';
 import { makeSlsVariable } from './helpers';
 
 /**
@@ -32,22 +31,22 @@ export const CUSTOMS = {
  */
 export const RESOURCES = {
   Samples: {
-    key: transformToPascal('samples'),
-    name: 'samples',
+    Ref: 'Samples',
+    Name: 'samples',
   },
 } as const;
 
 export const FUNCTIONS = {
   Swagger: {
-    key: transformToPascal('swagger'),
-    name: 'swagger',
+    Ref: 'Swagger',
+    Name: 'swagger',
   },
   Samples: {
-    key: transformToPascal('samples'),
-    name: 'samples',
+    Ref: 'Samples',
+    Name: 'samples',
   },
   SomeExample: {
-    key: transformToPascal('some-example'),
-    name: 'some-example',
+    Ref: 'SomeExample',
+    Name: 'some-example',
   },
 } as const;

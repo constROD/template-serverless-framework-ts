@@ -4,8 +4,8 @@ import { FUNCTIONS } from 'serverless/constants';
 import { makeHandlerPath, makeRoutes } from 'shared/utils/handler';
 
 export const someExampleFnConfig: AWS['functions'] = {
-  [FUNCTIONS.SomeExample.key]: {
-    handler: makeHandlerPath(FUNCTIONS.SomeExample.name),
+  [FUNCTIONS.SomeExample.Ref]: {
+    handler: makeHandlerPath(FUNCTIONS.SomeExample.Name),
     events: makeRoutes(SOME_EXAMPLE_ROUTES),
     environment: {
       /* Put here all the environment variables that you need */

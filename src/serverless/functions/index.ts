@@ -6,8 +6,8 @@ import { samplesFnConfig } from './samples';
 import { someExampleFnConfig } from './some-example';
 
 export const functions: AWS['functions'] = {
-  [FUNCTIONS.Swagger.key]: {
-    handler: makeHandlerPath(FUNCTIONS.Swagger.name),
+  [FUNCTIONS.Swagger.Ref]: {
+    handler: makeHandlerPath(FUNCTIONS.Swagger.Name),
     events: makeRoutes(SWAGGER_ROUTES),
     package: {
       patterns: ['./src/modules/swagger/**/*.ts'],
