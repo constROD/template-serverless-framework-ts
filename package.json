@@ -24,7 +24,7 @@
     "deploy:staging": "sls deploy --stage staging --verbose",
     "deploy:prod": "sls deploy --stage prod --verbose",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:dev": "jest --watch",
     "test:coverage": "jest --coverage",
     "env:encode": "cat .env | base64 -w 0 > .env-encoded",
     "env:decode": "cat .env-encoded | base64 -d > .env-decoded",

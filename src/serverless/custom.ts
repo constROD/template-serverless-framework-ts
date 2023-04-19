@@ -8,7 +8,7 @@ import { type AWS } from '@serverless/typescript';
 export const custom: AWS['custom'] = {
   /* SSM variables (from Secrets Manager) */
   // TODO: Uncomment the following line and add the required variables for SSM
-  // [CUSTOMS.Secrets]: `\${ssm:/aws/reference/secretsmanager/${SERVERLESS.ServiceName}/${SERVERLESS.Stage}}`,
+  // [CUSTOMS.Secrets]: makeSlsVariable(`ssm:/aws/reference/secretsmanager/${SERVICE_NAME}/${STAGE}`),
 
   esbuild: {
     bundle: true,

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-import-module-exports */
 import { type AWS } from '@serverless/typescript';
-import { AWS_REGION, LAMBDA_TIMEOUT, SERVERLESS, SERVICE_NAME } from 'serverless/constants';
+import { AWS_REGION, LAMBDA_TIMEOUT, SERVICE_NAME, STAGE } from 'serverless/constants';
 import { custom } from 'serverless/custom';
 import { environment } from 'serverless/environments';
 import { functions } from 'serverless/functions';
@@ -13,14 +13,14 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     region: AWS_REGION,
-    stage: SERVERLESS.Stage,
+    stage: STAGE,
     runtime: 'nodejs16.x',
     timeout: LAMBDA_TIMEOUT,
     deploymentBucket: {
-      name: `${SERVICE_NAME}-${SERVERLESS.Stage}-${AWS_REGION}`,
+      name: `${SERVICE_NAME}-${STAGE}-${AWS_REGION}`,
     },
     httpApi: {
-      name: `${SERVERLESS.ServiceName}-apis-${SERVERLESS.Stage}`,
+      name: `${SERVICE_NAME}-apis-${STAGE}`,
       cors: {
         allowedOrigins: ['*'],
         allowedHeaders: ['*'],

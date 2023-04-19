@@ -1,4 +1,5 @@
 import { transformToPascal } from 'shared/utils/common';
+import { makeSlsVariable } from './helpers';
 
 /**
  * Your service name and this will also used for naming convention.
@@ -16,10 +17,7 @@ export const LAMBDA_TIMEOUT = 10 as const;
 /* AWS Region */
 export const AWS_REGION = 'ap-southeast-1' as const;
 
-export const SERVERLESS = {
-  ServiceName: `\${self:service}`,
-  Stage: `\${opt:stage, 'dev'}`,
-} as const;
+export const STAGE = makeSlsVariable(`opt:stage, 'dev'`);
 
 export const CUSTOMS = {
   Secrets: 'secrets',
