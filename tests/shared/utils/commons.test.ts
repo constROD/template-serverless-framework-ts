@@ -1,4 +1,4 @@
-import { transformToPascal } from './commons';
+import { transformToPascal } from 'shared/utils/commons';
 
 describe('transformToPascal', () => {
   it('should transform a kebab-case string to PascalCase', () => {
