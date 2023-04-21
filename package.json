@@ -43,6 +43,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
     "knex": "^2.3.0",
     "lodash": "^4.17.21",
     "pg": "^8.9.0",

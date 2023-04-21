@@ -22,6 +22,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-console': 'error',
+    'no-promise-executor-return': 'off',
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': [
       'error',
