@@ -6,7 +6,6 @@ on:
 
 jobs:
   deploy-to-staging:
-    name: Deploy Serverless to Staging
     if: github.event.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +38,6 @@ jobs:
           AWS_REGION: ${{ secrets.STAGING_AWS_REGION }}
 
   deploy-to-production:
-    name: Deploy Serverless to Production
     if: github.event.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
