@@ -14,7 +14,8 @@
     "npmrc",
     "constrod",
     "npmjs",
-    "accum"
+    "accum",
+    "sonarcloud"
   ],
   "ignorePaths": [
     "./node_modules",
