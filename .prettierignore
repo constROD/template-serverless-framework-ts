@@ -6,7 +6,7 @@ node_modules
 .esbuild
 coverage
 
-.build
+build
 dist
 
 .DS_Store

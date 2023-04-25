@@ -16,7 +16,6 @@
     "isolatedModules": true,
     "incremental": true,
     "noUncheckedIndexedAccess": true,
-    "outDir": ".build",
     "types": ["node", "jest"]
   },
   "include": ["./src", "./tests", "./serverless.ts"],

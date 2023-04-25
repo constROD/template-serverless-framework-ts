@@ -9,7 +9,7 @@ Dockerfile
 .esbuild
 .pnpm-store
 
-.build
+build
 dist
 
 .DS_Store
