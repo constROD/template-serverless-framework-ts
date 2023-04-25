@@ -11,7 +11,7 @@ Dockerfile
 .esbuild
 coverage
 
-build
+.build
 dist
 
 .DS_Store

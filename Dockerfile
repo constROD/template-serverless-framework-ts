@@ -1,5 +1,7 @@
 FROM node:16-buster-slim
 
+# NOSONAR
+
 # Install needed packages.
 RUN apt update && apt install -y vim nano curl unzip libpq-dev g++ make python3-dev
 
@@ -15,9 +17,9 @@ WORKDIR /app
 RUN chmod -R 775 /app
 
 # Install global packages.
-RUN npm i -g pnpm
-RUN npm i -g nodemon
-RUN npm i -g serverless
+RUN npm i -g pnpm --ignore-scripts
+RUN npm i -g nodemon --ignore-scripts
+RUN npm i -g serverless --ignore-scripts
 
 # Copy needed files for installation.
 COPY package.json /app

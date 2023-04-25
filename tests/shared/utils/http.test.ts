@@ -2,6 +2,12 @@ import { HTTP_RESPONSES } from 'shared/constants/http';
 import { makeAPIResponse } from 'shared/utils/http';
 
 describe('makeAPIResponse', () => {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': true,
+    'Content-Type': 'application/json',
+  };
+
   it('should create a response with the correct type, data, and error', () => {
     const type = 'Success';
     const data = { message: 'Hello, world!' };
@@ -14,11 +20,7 @@ describe('makeAPIResponse', () => {
     });
     const expectedResult = {
       statusCode: HTTP_RESPONSES[type].statusCode,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({
         message: HTTP_RESPONSES[type].message,
         code: HTTP_RESPONSES[type].code,
@@ -43,11 +45,7 @@ describe('makeAPIResponse', () => {
     });
     const expectedResult = {
       statusCode: HTTP_RESPONSES[type].statusCode,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({ data, error }),
     };
 
@@ -62,11 +60,7 @@ describe('makeAPIResponse', () => {
     });
     const expectedResult = {
       statusCode: HTTP_RESPONSES[type].statusCode,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({
         message: HTTP_RESPONSES[type].message,
         code: HTTP_RESPONSES[type].code,

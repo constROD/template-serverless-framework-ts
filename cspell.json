@@ -19,7 +19,7 @@
   ],
   "ignorePaths": [
     "./node_modules",
-    "./build",
+    "./.build",
     "./dist",
     "./.husky",
     "./pnpm-lock.yaml",
