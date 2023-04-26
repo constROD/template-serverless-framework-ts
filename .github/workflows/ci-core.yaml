@@ -1,8 +1,11 @@
-name: CI - Scan PR Branch
+name: CI - Scan Core Branch
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - develop
+      - staging
+      - main
 
 jobs:
   test:

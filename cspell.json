@@ -15,7 +15,8 @@
     "constrod",
     "npmjs",
     "accum",
-    "sonarcloud"
+    "sonarcloud",
+    "lcov"
   ],
   "ignorePaths": [
     "./node_modules",

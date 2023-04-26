@@ -6,6 +6,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts', 'json'],
   preset: 'ts-jest',
   coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov'],
   collectCoverage: true,
   clearMocks: true,
 };

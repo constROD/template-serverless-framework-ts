@@ -34,7 +34,7 @@
     "lint:types": "tsc",
     "lint:spell": "git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin",
     "ci:lint": "concurrently \"pnpm lint\" \"pnpm lint:types\" \"pnpm lint:spell\"",
-    "ci:test": "concurrently \"pnpm test\"",
+    "ci:test": "concurrently \"pnpm test:coverage\"",
     "pre-commit": "concurrently \"lint-staged --allow-empty\" \"pnpm lint:spell\"",
     "prepare": "husky install"
   },
