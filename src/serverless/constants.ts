@@ -30,23 +30,11 @@ export const CUSTOMS = {
  * ? so we need to convert it to `PascalCase` to prevent the `Dash` in the name.
  */
 export const RESOURCES = {
-  Samples: {
-    Ref: 'Samples',
-    Name: 'samples',
-  },
+  Secret: 'secret',
 } as const;
 
 export const FUNCTIONS = {
-  Swagger: {
-    Ref: 'Swagger',
-    Name: 'swagger',
-  },
-  Samples: {
-    Ref: 'Samples',
-    Name: 'samples',
-  },
-  SomeExample: {
-    Ref: 'SomeExample',
-    Name: 'some-example',
-  },
+  Swagger: 'swagger',
+  Samples: 'samples',
+  SomeExample: 'some-example',
 } as const;

@@ -2,17 +2,23 @@ name: Deploy
 
 on:
   push:
-    branches: [staging, main]
+    branches:
+      - staging
+      - main
 
 jobs:
   deploy-to-staging:
-    if: github.event.ref == 'refs/heads/staging'
+    if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
+    env:
+      STAGE: staging
+      AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.STAGING_AWS_REGION }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: staging
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
@@ -31,20 +37,45 @@ jobs:
       - name: Serverless Deploy
         uses: serverless/github-action@v3.1
         with:
-          args: deploy --verbose --stage staging
+          args: deploy --verbose --stage ${{ env.STAGE }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.STAGING_AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ env.AWS_REGION }}
+
+      # - name: CDK Synthesize
+      #   run: npx aws-cdk synth
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: ${{ env.AWS_REGION }}
+
+      # - name: CDK Bootstrap
+      #   run: npx aws-cdk bootstrap
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: ${{ env.AWS_REGION }}
+
+      # - name: CDK Deploy
+      #   run: npx aws-cdk deploy '*'
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: ${{ env.AWS_REGION }}
 
   deploy-to-production:
-    if: github.event.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    env:
+      STAGE: prod
+      AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.PROD_AWS_REGION }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: staging
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
@@ -63,8 +94,29 @@ jobs:
       - name: Serverless Deploy
         uses: serverless/github-action@v3.1
         with:
-          args: deploy --verbose --stage prod
+          args: deploy --verbose --stage ${{ env.STAGE }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.PROD_AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ env.AWS_REGION }}
+
+      # - name: CDK Synthesize
+      #   run: npx aws-cdk synth
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: ${{ env.AWS_REGION }}
+
+      # - name: CDK Bootstrap
+      #   run: npx aws-cdk bootstrap
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: ${{ env.AWS_REGION }}
+
+      # - name: CDK Deploy
+      #   run: npx aws-cdk deploy '*'
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: ${{ env.AWS_REGION }}

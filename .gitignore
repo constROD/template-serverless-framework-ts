@@ -31,3 +31,6 @@ logs
 *.log
 *-debug.log*
 *-error.log*
+
+.cdk.staging
+cdk.out

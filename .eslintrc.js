@@ -61,5 +61,11 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      files: ['./src/cdk/**/*.ts'],
+      rules: {
+        'no-new': 'off',
+      },
+    },
   ],
 };

@@ -1,8 +1,11 @@
-name: CI - Scan PR Branch
+name: Scan PR Branch
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   test:
@@ -46,7 +49,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download coverage report
+      - name: Download Coverage Report
         uses: actions/download-artifact@v2
         with:
           name: coverage

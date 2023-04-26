@@ -4,7 +4,7 @@ import { type MakeRoutesOption } from 'shared/utils/handler';
 const routes = {
   listOfSomeExample: {
     method: 'GET',
-    path: `/${FUNCTIONS.SomeExample.Name}`,
+    path: `/${FUNCTIONS.SomeExample}`,
   },
 } as const;
 

@@ -17,7 +17,7 @@ export const STAGES = {
   Prod: 'prod',
 } as const;
 
-const envVariables = z.object({
+const envSchema = z.object({
   STAGE: z.enum([STAGES.Dev, STAGES.Staging, STAGES.Prod]).default(STAGES.Dev),
   DB_HOST: z.string(),
   DB_PORT: z.coerce.number(),
@@ -26,7 +26,7 @@ const envVariables = z.object({
   DB_NAME: z.string(),
 });
 
-export const env = envVariables.parse({
+export const env = envSchema.parse({
   STAGE: process.env.STAGE,
   DB_HOST: process.env.DB_HOST,
   DB_PORT: process.env.DB_PORT,
