@@ -1,5 +1,6 @@
 import { HTTP_RESPONSES } from 'shared/constants/http';
 import { makeAPIResponse } from 'shared/utils/http';
+import { describe, expect, it } from 'vitest';
 
 describe('makeAPIResponse', () => {
   const headers = {

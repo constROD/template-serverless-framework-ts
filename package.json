@@ -1,9 +1,9 @@
 {
-  "name": "template-serverless-ts",
+  "name": "template-serverless-framework-ts",
   "version": "0.0.1",
-  "repository": "https://github.com/constrod/template-serverless-ts",
+  "repository": "https://github.com/constrod/template-serverless-framework-ts",
   "bugs": {
-    "url": "https://github.com/constrod/template-serverless-ts/issues"
+    "url": "https://github.com/constrod/template-serverless-framework-ts/issues"
   },
   "contributors": [
     {
@@ -23,11 +23,8 @@
     "deploy:dev": "sls deploy --stage dev --verbose",
     "deploy:staging": "sls deploy --stage staging --verbose",
     "deploy:prod": "sls deploy --stage prod --verbose",
-    "test": "jest",
-    "test:dev": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "env:encode": "cat .env | base64 -w 0 > .env-encoded",
-    "env:decode": "cat .env-encoded | base64 -d > .env-decoded",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "format": "prettier --write ./src/**/*.ts{,x}",
     "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx",
@@ -39,7 +36,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix",
+    "**/*.{js,ts}": "eslint --cache --fix",
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
@@ -61,13 +58,13 @@
     "@middy/http-router": "^4.2.7",
     "@serverless/typescript": "^3.21.0",
     "@types/aws-lambda": "^8.10.71",
-    "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.191",
     "@types/node": "^17.0.35",
     "@types/pg": "^8.6.5",
     "@types/swagger-jsdoc": "^6.0.1",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
+    "@vitest/coverage-c8": "^0.31.0",
     "aws-cdk-lib": "^2.77.0",
     "aws-sdk": "^2.1366.0",
     "concurrently": "^7.6.0",
@@ -81,7 +78,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.0",
-    "jest": "^29.5.0",
     "lint-staged": "^13.0.3",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
@@ -90,9 +86,10 @@
     "serverless-esbuild": "^1.32.8",
     "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-offline": "^10.1.0",
-    "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.31.0"
   }
 }

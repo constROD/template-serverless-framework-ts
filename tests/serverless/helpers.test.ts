@@ -1,4 +1,5 @@
 import { makeSlsVariable } from 'serverless/helpers';
+import { describe, expect, it } from 'vitest';
 
 describe('makeSlsVariable', () => {
   it('should create a single variable correctly', () => {

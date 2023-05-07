@@ -16,7 +16,7 @@
     "isolatedModules": true,
     "incremental": true,
     "noUncheckedIndexedAccess": true,
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
   "include": ["./src", "./tests", "./serverless.ts"],
   "exclude": ["./node_modules"],

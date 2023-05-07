@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { format } from 'date-fns';
 import { formatDate, logger, transformToPascal, wait } from 'shared/utils/commons';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 describe('formatDate', () => {
   it('should return an empty string when date is null', () => {
@@ -25,7 +26,7 @@ describe('logger', () => {
   const originalConsoleLog = console.debug;
 
   beforeEach(() => {
-    console.debug = jest.fn();
+    console.debug = vi.fn();
   });
 
   afterEach(() => {
@@ -47,7 +48,7 @@ describe('logger', () => {
 });
 
 describe('wait', () => {
-  test('should wait for the specified time', async () => {
+  it('should wait for the specified time', async () => {
     const startTime = Date.now();
     const waitTime = 500; // milliseconds
 

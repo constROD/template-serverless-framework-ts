@@ -1,5 +1,6 @@
 import { makeSwaggerPaths } from 'shared/utils/swagger';
 import type swaggerJSDoc from 'swagger-jsdoc';
+import { describe, expect, it } from 'vitest';
 
 describe('makeSwaggerPaths', () => {
   it('should combine swagger paths correctly', () => {
