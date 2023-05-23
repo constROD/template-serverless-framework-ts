@@ -1,6 +1,6 @@
 {
   "name": "template-serverless-framework-ts",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "repository": "https://github.com/constrod/template-serverless-framework-ts",
   "bugs": {
     "url": "https://github.com/constrod/template-serverless-framework-ts/issues"
